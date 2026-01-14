@@ -22,12 +22,12 @@ Entry package selection:
 Task template per lane:
 - Map task: “Generate lane-specific map + brief findings” (output under `notes/maps/`).
 - Dossier task: “Write dossier for lane entry packages” (output under `notes/dossiers/`).
-- For conciseness, tasks should reference `prompts/map_task.md` or `prompts/dossier_task.md` instead of duplicating workflow instructions.
+- For conciseness, tasks should reference `prompts/backlog/map_task.md` or `prompts/backlog/dossier_task.md` instead of duplicating workflow instructions.
 - Use Backlog MCP tools (`task_create`, `task_edit`, `milestone_add`, etc.) for task creation/updates when available; fall back to CLI only if MCP isn’t available.
 
 Acceptance criteria (for each task):
 - References cite file paths and class/function names.
-- Dossier includes: purpose + pipeline, key classes/files, data structures + invariants, tolerance/robustness notes, compare-to section, and one runnable repro under `oracles/` (bundled into the dossier task; no separate oracle task needed).
+- Dossier includes: purpose + pipeline, key classes/files, data structures + invariants, tolerance/robustness notes, compare-to section, and (if needed) an optional runnable repro under `tools/repros/...`.
 
 Notes:
 - Keep tasks small and independent.
