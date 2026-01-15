@@ -29,3 +29,12 @@ From repo root:
   - exact: all strings, bools, integers (counts), and enum-like fields
   - tolerant: all floating-point fields (points/translations), compare within `eps = 1e-9`
 
+## Scenarios covered / not covered
+
+- Covered:
+  - `TopoDS_Shape` identity tiers (`IsPartner`/`IsSame`/`IsEqual`) across location + orientation changes
+  - `TopTools_IndexedMapOfShape` semantics (orientation ignored, location matters)
+  - traversal differences for a compound of two instances
+- Not covered (next extension):
+  - `TopLoc_Location` datum-chain cancellation/inversion edge-cases
+  - exceptions for negative/non-unit scaling via `TopoDS_Shape::Location(..., raiseExc)`

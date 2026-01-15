@@ -23,3 +23,10 @@ From repo root:
   - exact: all strings, bools, integers (sizes/counts), and enum-like fields
   - tolerant: all floating-point fields, compare within `eps = 1e-9`
 
+## Scenarios covered / not covered
+
+- Covered:
+  - version/tolerance constants, `gp` transform math, intrusive `Handle()` refcount, basic `NCollection` iteration
+- Not covered (next extension):
+  - exception/error-path behaviors (e.g., `Standard_DomainError` cases)
+  - more container types (`DataMap`, `IndexedMap`) and allocator behaviors

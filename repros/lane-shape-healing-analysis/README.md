@@ -28,3 +28,10 @@ From repo root:
 - Match criteria:
   - exact: all strings, bools
   - tolerant: all floating-point fields (gap distances, tolerances), compare within `eps = 1e-9`
+
+## Scenarios covered / not covered
+
+- Covered:
+  - closing a small endpoint gap in a 3D wire using `ShapeFix_Wire` (`FixConnected` effect)
+- Not covered (next extension):
+  - healing on-face pcurves, seam edges, and whole-shape repair flows (`ShapeFix_Shape`)

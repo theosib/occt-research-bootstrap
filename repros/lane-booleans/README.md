@@ -28,3 +28,11 @@ From repo root:
   - exact: all strings, bools, integers (counts)
   - tolerant: all floating-point fields (bbox), compare within `eps = 1e-9`
 
+## Scenarios covered / not covered
+
+- Covered:
+  - overlapping solid/solid booleans (FUSE/COMMON/CUT) with parallel disabled
+  - validity + basic topology counts + bbox sanity checks
+- Not covered (next extension):
+  - fuzzy booleans (`SetFuzzyValue`) and tolerance-driven merges
+  - non-solid operands (faces/shells), SECTION/SPLITTER pipelines
