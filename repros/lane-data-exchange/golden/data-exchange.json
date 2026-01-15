@@ -1,0 +1,21 @@
+{
+  "meta": {
+    "occt_version": "7.9.3",
+    "occt_dev": ""
+  },
+  "step": {
+    "write_status": { "code": 1, "name": "RetDone" },
+    "read_status": { "code": 1, "name": "RetDone" },
+    "model_nb_entities": 494,
+    "nb_roots_for_transfer": 1,
+    "nb_roots_transferred": 1
+  },
+  "source": {
+    "counts": { "compounds": 1, "solids": 2, "shells": 2, "faces": 9, "edges": 15, "vertices": 10 },
+    "bbox": { "is_void": false, "min": [-9.9999999999999995e-08, -3.0000000999999998, -9.9999999999999995e-08], "max": [15.000000099999999, 10.000000099999999, 10.000000099999999] }
+  },
+  "imported": {
+    "counts": { "compounds": 1, "solids": 2, "shells": 2, "faces": 9, "edges": 15, "vertices": 10 },
+    "bbox": { "is_void": false, "min": [-9.9999999999999995e-08, -3.0000000999999998, -9.9999999999999995e-08], "max": [15.000000099999999, 10.000000099999999, 10.000000099999999] }
+  }
+}
