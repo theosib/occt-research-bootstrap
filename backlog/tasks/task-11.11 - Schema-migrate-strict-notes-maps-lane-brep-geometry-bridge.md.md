@@ -2,16 +2,17 @@
 id: task-11.11
 title: 'Schema migrate (strict): notes/maps/lane-brep-geometry-bridge.md'
 status: Done
-assignee:
+assignee: []
 created_date: '2026-01-15 01:29:54'
-updated_date: '2026-01-15 02:06:00'
+updated_date: '2026-01-15 02:08'
 labels:
-  - 'schema-migration'
+  - schema-migration
   - 'kind:lane-map'
   - 'lane:brep-geometry-bridge'
-dependencies:
+dependencies: []
 parent_task_id: task-11
 ---
+
 ## Description
 
 <!-- SECTION:DESCRIPTION:BEGIN -->
@@ -32,7 +33,7 @@ Current validator errors:
 
 ## Acceptance Criteria
 <!-- AC:BEGIN -->
-- [ ] #1 `notes/maps/lane-brep-geometry-bridge.md` passes `strict` validation
+- [x] #1 `notes/maps/lane-brep-geometry-bridge.md` passes `strict` validation
 <!-- AC:END -->
 
 ## Implementation Plan
@@ -46,9 +47,9 @@ Current validator errors:
 ## Implementation Notes
 
 <!-- SECTION:NOTES:BEGIN -->
-<!-- SECTION:NOTES:BEGIN -->
-
+- `python3 tools/validate_md_types.py --level strict`: OK (document now includes required strict headings).
 <!-- SECTION:NOTES:END -->
+
 <!-- SECTION:NOTES:END -->
 
 <!-- SECTION:NOTES:END -->
