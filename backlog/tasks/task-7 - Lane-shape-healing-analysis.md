@@ -1,0 +1,20 @@
+---
+id: task-7
+title: 'Lane: shape-healing-analysis'
+status: To Do
+assignee: []
+created_date: '2026-01-15 00:00'
+updated_date: '2026-01-15 00:01'
+labels:
+  - 'lane:shape-healing-analysis'
+  - 'type:lane'
+dependencies: []
+---
+
+## Description
+
+<!-- SECTION:DESCRIPTION:BEGIN -->
+Source of truth: notes/maps/lanes.md.
+
+This is a parent task grouping the lane's map + dossier tasks.
+<!-- SECTION:DESCRIPTION:END -->
