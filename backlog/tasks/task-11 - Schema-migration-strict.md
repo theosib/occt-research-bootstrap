@@ -2,14 +2,13 @@
 id: task-11
 title: Schema migration (strict)
 status: Done
-assignee: []
+assignee:
 created_date: '2026-01-15 01:29:54'
-updated_date: '2026-01-15 02:07'
+updated_date: '2026-01-15 02:10:12'
 labels:
-  - schema-migration
-dependencies: []
+  - 'schema-migration'
+dependencies:
 ---
-
 ## Description
 
 <!-- SECTION:DESCRIPTION:BEGIN -->
