@@ -4,6 +4,13 @@ Scope: STEP/IGES/XCAF import/export and translation layers (schema packages, rea
 
 Source lane definition: `notes/maps/lanes.md` (entry packages: `STEPControl`, `IGESControl`, `Step*`, `IGES*`, `Interface`, `IFSelect`, `Transfer`).
 
+## Provenance (required)
+
+- OCCT version + build config: `notes/maps/provenance.md`
+- Map inputs:
+  - `notes/maps/packages.json`
+  - `notes/maps/include_graph.exchange_vis.dot` / `notes/maps/include_graph.exchange_vis.md`
+
 ## Package footprint (size proxy)
 
 From `notes/maps/packages.json` (selected entry packages):

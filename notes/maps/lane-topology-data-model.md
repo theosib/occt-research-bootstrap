@@ -4,6 +4,13 @@ Scope: topological data model and its invariants (shape types, locations, sharin
 
 Source lane definition: `notes/maps/lanes.md` (entry packages: `TopoDS`, `TopAbs`, `TopLoc`, `TopTools`).
 
+## Provenance (required)
+
+- OCCT version + build config: `notes/maps/provenance.md`
+- Map inputs:
+  - `notes/maps/packages.json`
+  - `notes/maps/include_graph.core.dot` / `notes/maps/include_graph.core.md`
+
 ## Package footprint (size proxy)
 
 From `notes/maps/packages.json`:

@@ -6,6 +6,25 @@ Status: draft
 
 Describe OCCT’s core topological data model: how shapes are represented and shared (`TopoDS_Shape` / `TopoDS_TShape`), how placement is encoded and composed (`TopLoc_Location`), how type + orientation semantics are represented (`TopAbs_*`), and how shapes are stored in common containers with well-defined identity semantics (`TopTools_*`).
 
+## Provenance (required)
+
+- OCCT version + build config: `notes/maps/provenance.md`
+- Evidence sources are cited inline in this dossier (file paths under `occt/src/`).
+
+## Scenario + observable outputs (required)
+
+- Scenario: build a compound with two instances of the same sub-shape at different locations and traverse it.
+- Observable outputs: `TopoDS_Shape::IsPartner/IsSame/IsEqual` behavior; location/orientation propagation; identity semantics in `TopTools_*` containers.
+- Success criteria: traversal and identity semantics match the described invariants (no accidental deep copies).
+
+## Spine (call chain) (required)
+
+1) `occt/src/TopoDS/TopoDS_Shape.hxx` — `TopoDS_Shape` (value handle + identity tiers)
+2) `occt/src/TopoDS/TopoDS_TShape.hxx` — `TopoDS_TShape` (shared topology payload)
+3) `occt/src/TopLoc/TopLoc_Location.hxx` — `TopLoc_Location` (instance placement)
+4) `occt/src/TopExp/TopExp_Explorer.hxx` — `TopExp_Explorer` (graph traversal)
+5) `occt/src/TopTools/TopTools_ShapeMapHasher.hxx` — `TopTools_ShapeMapHasher` (identity-based hashing)
+
 ## High-level pipeline
 
 - Vocabulary: algorithms speak in terms of `TopAbs_ShapeEnum` (kind: edge/face/...) and `TopAbs_Orientation` (direction + inside/outside semantics). (`occt/src/TopAbs/TopAbs_ShapeEnum.hxx`, `occt/src/TopAbs/TopAbs_Orientation.hxx`)

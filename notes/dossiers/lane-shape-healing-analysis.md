@@ -6,6 +6,25 @@ Status: draft
 
 Capture the “shape healing” toolkit that sits between raw/topologically-valid OCCT shapes and downstream algorithms that assume cleaner inputs (booleans, meshing, exchange). This dossier focuses on (1) how fixing is structured (facades and per-entity tools), (2) how tolerances are inspected/limited, and (3) how upgrades record modifications through a context / reshape mechanism.
 
+## Provenance (required)
+
+- OCCT version + build config: `notes/maps/provenance.md`
+- Evidence sources are cited inline in this dossier (file paths under `occt/src/`).
+
+## Scenario + observable outputs (required)
+
+- Scenario: run shape healing over an imported shape and inspect what was changed.
+- Observable outputs: DONE/FAIL status flags; messages via registrator; tolerance scans via `ShapeAnalysis_ShapeTolerance`.
+- Success criteria: fixes surface as explicit status/messages and are reproducible.
+
+## Spine (call chain) (required)
+
+1) `occt/src/ShapeFix/ShapeFix_Shape.hxx` — `ShapeFix_Shape::Perform` (high-level façade)
+2) `occt/src/ShapeFix/ShapeFix_Face.hxx` — `ShapeFix_Face::Perform` (face/wire fixes)
+3) `occt/src/ShapeFix/ShapeFix_Wire.hxx` — `ShapeFix_Wire::Perform` (wire repair pipeline)
+4) `occt/src/ShapeAnalysis/ShapeAnalysis_ShapeTolerance.hxx` — `ShapeAnalysis_ShapeTolerance::Tolerance` (tolerance scan)
+5) `occt/src/ShapeBuild/ShapeBuild_ReShape.hxx` — `ShapeBuild_ReShape::Apply` (recorded substitutions)
+
 ## High-level pipeline
 
 - Inspect tolerances and hotspots: `ShapeAnalysis_ShapeTolerance` computes min/max/avg tolerances over sub-shapes and can return the sub-shapes over / within a tolerance threshold. (`occt/src/ShapeAnalysis/ShapeAnalysis_ShapeTolerance.hxx`)

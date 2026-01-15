@@ -4,6 +4,13 @@ Scope: boundary representation helpers that connect topology (`TopoDS`) to geome
 
 Source lane definition: `notes/maps/lanes.md` (entry packages: `BRep`, `BRepTools`, `BRepAdaptor`, `BRepBuilderAPI`).
 
+## Provenance (required)
+
+- OCCT version + build config: `notes/maps/provenance.md`
+- Map inputs:
+  - `notes/maps/packages.json`
+  - `notes/maps/include_graph.core.dot` / `notes/maps/include_graph.core.md`
+
 ## Package footprint (size proxy)
 
 From `notes/maps/packages.json`:

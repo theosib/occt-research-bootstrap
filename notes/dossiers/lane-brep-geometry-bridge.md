@@ -10,6 +10,24 @@ Explain how OCCT bridges *topology* (`TopoDS_*`) to *geometry* (`Geom*`, `gp*`) 
 - **Construction**: consistent “builder API” shape result + subshape history (`BRepBuilderAPI_MakeShape`).
 - **Utilities**: post-processing/update, UV bounds, triangulation management (`BRepTools`).
 
+## Provenance (required)
+
+- OCCT version + build config: `notes/maps/provenance.md`
+- Repro oracle: `repros/lane-brep-geometry-bridge/` (see `bridge.json`).
+
+## Scenario + observable outputs (required)
+
+- Scenario: build a planar face from a rectangular wire and query an edge’s 3D curve and its pcurve on that face.
+- Observable outputs: curve types/ranges; surface type; curve-vs-surface point distance via pcurve UV; triangulation stats after meshing.
+- Success criteria: distance is ~0 within epsilon; triangulation exists after meshing.
+
+## Spine (call chain) (required)
+
+1) `occt/src/BRep/BRep_Tool.hxx` — `BRep_Tool::Curve` / `CurveOnSurface` / `Surface` (bridge getters)
+2) `occt/src/BRep/BRep_Tool.hxx` — `BRep_Tool::Triangulation` / `PolygonOnTriangulation` (mesh attachments)
+3) `occt/src/BRepMesh/BRepMesh_IncrementalMesh.hxx` — `BRepMesh_IncrementalMesh::Perform` (triangulation production)
+4) `occt/src/BRepAdaptor/BRepAdaptor_Curve.hxx` — `BRepAdaptor_Curve` (edge-as-curve adapter)
+
 ## High-level pipeline
 
 - Given a `TopoDS_*` shape, `BRep_Tool` accesses the underlying `BRep_T*` implementation (e.g. `BRep_TEdge`, `BRep_TFace`, `BRep_TVertex`) via `TShape()` and traverses stored curve/surface representations. (`occt/src/BRep/BRep_Tool.cxx`)

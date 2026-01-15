@@ -4,6 +4,13 @@ Scope: boolean operations pipeline, data structures, and robustness decisions.
 
 Source lane definition: `notes/maps/lanes.md` (entry packages: `BOPAlgo`, `BOPDS`, `BRepAlgoAPI`).
 
+## Provenance (required)
+
+- OCCT version + build config: `notes/maps/provenance.md`
+- Map inputs:
+  - `notes/maps/packages.json`
+  - `notes/maps/include_graph.core.dot` / `notes/maps/include_graph.core.md`
+
 ## Package footprint (size proxy)
 
 From `notes/maps/packages.json`:

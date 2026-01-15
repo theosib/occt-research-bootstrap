@@ -6,6 +6,25 @@ Status: draft
 
 Capture OCCT’s “data exchange” stack at the level where a file becomes a `TopoDS_Shape`: format-specific readers (STEP/IGES), the shared `XSControl_Reader` groundwork (work session + selections + transfer bookkeeping), and the transfer process machinery that maps an `InterfaceModel` entity graph into application objects with trace/check support.
 
+## Provenance (required)
+
+- OCCT version + build config: `notes/maps/provenance.md`
+- Evidence sources are cited inline in this dossier (file paths under `occt/src/`).
+
+## Scenario + observable outputs (required)
+
+- Scenario: read a small STEP/IGES file, transfer roots to shapes, and inspect transfer checks/statistics.
+- Observable outputs: `IFSelect_ReturnStatus`; warning/fail messages; number of transferred roots/shapes; units used during transfer.
+- Success criteria: clean inputs transfer without fail status; warnings are stable and traceable.
+
+## Spine (call chain) (required)
+
+1) `occt/src/XSControl/XSControl_Reader.hxx` — `XSControl_Reader::ReadFile` (shared load)
+2) `occt/src/STEPControl/STEPControl_Reader.hxx` — `STEPControl_Reader::ReadFile` / `TransferRoots` (STEP façade)
+3) `occt/src/IGESControl/IGESControl_Reader.hxx` — `IGESControl_Reader::NbRootsForTransfer` (IGES façade)
+4) `occt/src/Transfer/Transfer_TransientProcess.hxx` — `Transfer_TransientProcess` (transfer trace/check support)
+5) `occt/src/IFSelect/IFSelect_SessionPilot.hxx` — `IFSelect_SessionPilot::Perform` (scriptable session)
+
 ## High-level pipeline
 
 - Reader façade (format-specific):

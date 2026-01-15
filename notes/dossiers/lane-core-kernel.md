@@ -6,6 +6,24 @@ Status: draft
 
 Capture the “core kernel” layer of OCCT: foundational runtime conventions (`Standard` handles/RTTI/exceptions), core containers (`NCollection`), basic geometric primitives and transforms (`gp`), analytic / spline geometry (`Geom`/`Geom2d`), and low-level numerical utilities (`math`). This is the substrate that most downstream modeling/booleans/meshing/exchange code builds on.
 
+## Provenance (required)
+
+- OCCT version + build config: `notes/maps/provenance.md`
+- Evidence sources are cited inline in this dossier (file paths under `occt/src/`).
+
+## Scenario + observable outputs (required)
+
+- Scenario: exercise handle lifetime (`Standard_Transient`) and tolerance constants used throughout modeling.
+- Observable outputs: refcount behavior; exceptions on invalid construction; values of `Precision::*` and `gp::Resolution()`.
+- Success criteria: invariants described here match observed behavior and constants.
+
+## Spine (call chain) (required)
+
+1) `occt/src/Standard/Standard_Transient.hxx` — `Standard_Transient` (handle-managed lifetime)
+2) `occt/src/Standard/Standard_Handle.hxx` — `opencascade::handle<T>` (RAII + refcount)
+3) `occt/src/Precision/Precision.hxx` — `Precision::*` (tolerance vocabulary)
+4) `occt/src/gp/gp.hxx` — `gp::Resolution()` (baseline epsilon)
+
 ## High-level pipeline
 
 - Runtime layer: objects that participate in OCCT’s handle-based lifetime model derive from `Standard_Transient` and are managed via `Handle(T)` / `opencascade::handle<T>`. (`occt/src/Standard/Standard_Transient.hxx`, `occt/src/Standard/Standard_Handle.hxx`)

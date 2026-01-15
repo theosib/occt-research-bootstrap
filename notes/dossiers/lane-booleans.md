@@ -6,6 +6,25 @@ Status: draft
 
 Capture OCCT’s Boolean Operations (“BOP”) subsystem at a practical level: the separation between (1) intersection / splitting, (2) data structure storage of intersections and “same domain” groupings, and (3) building/assembling final results (fuse/common/cut/section). Focus is on the shape-level API contracts and the robustness knobs surfaced through this stack.
 
+## Provenance (required)
+
+- OCCT version + build config: `notes/maps/provenance.md`
+- Evidence sources are cited inline in this dossier (file paths under `occt/src/`).
+
+## Scenario + observable outputs (required)
+
+- Scenario: fuse two solids that partially overlap.
+- Observable outputs: warning/error alerts in `BOPAlgo_Options` report; counts of result solids/faces/edges.
+- Success criteria: result is non-null; no fail alerts; stable topology counts within tolerance expectations.
+
+## Spine (call chain) (required)
+
+1) `occt/src/BRepAlgoAPI/BRepAlgoAPI_BooleanOperation.hxx` — `BRepAlgoAPI_BooleanOperation::Build` (API entrypoint)
+2) `occt/src/BRepAlgoAPI/BRepAlgoAPI_BuilderAlgo.hxx` — `BRepAlgoAPI_BuilderAlgo::IntersectShapes` / `BuildResult` (orchestration)
+3) `occt/src/BOPAlgo/BOPAlgo_PaveFiller.hxx` — `BOPAlgo_PaveFiller::PerformInternal` (intersection + splitting)
+4) `occt/src/BOPAlgo/BOPAlgo_BOP.hxx` — `BOPAlgo_BOP::Perform` (build phase)
+5) `occt/src/BOPAlgo/BOPAlgo_Options.hxx` — `BOPAlgo_Options::GetReport` (warnings/errors)
+
 ## High-level pipeline
 
 - API layer: `BRepAlgoAPI_BooleanOperation` (and convenience wrappers like `BRepAlgoAPI_Fuse`) define the Objects/Tools split and the chosen operation type (fuse/common/cut/section). (`occt/src/BRepAlgoAPI/BRepAlgoAPI_BooleanOperation.hxx`, `occt/src/BRepAlgoAPI/BRepAlgoAPI_Fuse.hxx`)

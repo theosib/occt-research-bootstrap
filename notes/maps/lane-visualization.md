@@ -4,6 +4,13 @@ Scope: interactive visualization stack and rendering backends.
 
 Source lane definition: `notes/maps/lanes.md` (entry packages: `AIS`, `Prs3d`, `Graphic3d`, `OpenGl`, `V3d`, `Select3D`).
 
+## Provenance (required)
+
+- OCCT version + build config: `notes/maps/provenance.md`
+- Map inputs:
+  - `notes/maps/packages.json`
+  - `notes/maps/include_graph.exchange_vis.dot` / `notes/maps/include_graph.exchange_vis.md`
+
 ## Package footprint (size proxy)
 
 From `notes/maps/packages.json`:

@@ -4,6 +4,13 @@ Scope: shape validation, fixing, and upgrades; common entry points when dealing 
 
 Source lane definition: `notes/maps/lanes.md` (entry packages: `ShapeFix`, `ShapeAnalysis`, `ShapeUpgrade`).
 
+## Provenance (required)
+
+- OCCT version + build config: `notes/maps/provenance.md`
+- Map inputs:
+  - `notes/maps/packages.json`
+  - `notes/maps/include_graph.core.dot` / `notes/maps/include_graph.core.md`
+
 ## Package footprint (size proxy)
 
 From `notes/maps/packages.json`:

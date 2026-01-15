@@ -6,6 +6,24 @@ Status: draft
 
 Capture OCCT’s B-Rep tessellation (“meshing”) entry points, parameterization, and discrete-model orchestration. This dossier focuses on how meshing is staged (model build → edge discretization → healing/pre/post processing → face discretization), what parameters mean at the API surface, and which tolerance/guardrails are enforced.
 
+## Provenance (required)
+
+- OCCT version + build config: `notes/maps/provenance.md`
+- Evidence sources are cited inline in this dossier (file paths under `occt/src/`).
+
+## Scenario + observable outputs (required)
+
+- Scenario: mesh a simple planar face using explicit `IMeshTools_Parameters`.
+- Observable outputs: mesher status flags; face triangulation node/triangle counts; presence of edge polygons on triangulation.
+- Success criteria: meshing succeeds without exception; triangulation exists and counts are stable for the scenario.
+
+## Spine (call chain) (required)
+
+1) `occt/src/BRepMesh/BRepMesh_IncrementalMesh.hxx` — `BRepMesh_IncrementalMesh::Perform` (entrypoint)
+2) `occt/src/IMeshTools/IMeshTools_Context.hxx` — `IMeshTools_Context` (phase orchestration)
+3) `occt/src/IMeshTools/IMeshTools_Parameters.hxx` — `IMeshTools_Parameters` (parameter policy)
+4) `occt/src/IMeshData/IMeshData_Model.hxx` — `IMeshData_Model` (discrete model interface)
+
 ## High-level pipeline
 
 - Entry point: `BRepMesh_IncrementalMesh` is the main “mesh this shape” algorithm object; constructors can auto-run `Perform()`, and the class exposes a `Perform()` overload taking an `IMeshTools_Context`. (`occt/src/BRepMesh/BRepMesh_IncrementalMesh.hxx`)

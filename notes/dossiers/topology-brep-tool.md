@@ -6,6 +6,24 @@ Status: draft
 
 Capture how OCCT represents topology (`TopoDS_Shape`/`TopoDS_TShape`) and how `BRep_Tool` exposes underlying geometry (curves, surfaces, triangulation, tolerances) for B-Rep shapes.
 
+## Provenance (required)
+
+- OCCT version + build config: `notes/maps/provenance.md`
+- Evidence sources are cited inline in this dossier (file paths under `occt/src/`).
+
+## Scenario + observable outputs (required)
+
+- Scenario: compare an edge’s 3D curve point to the face surface point evaluated via the edge pcurve.
+- Observable outputs: curve types and parameter ranges; `SameParameter`/`SameRange` flags; tolerance values; point distance.
+- Success criteria: point distance is within tolerance; flags and ranges are internally consistent for the edge/face pair.
+
+## Spine (call chain) (required)
+
+1) `occt/src/TopoDS/TopoDS_Shape.hxx` — `TopoDS_Shape` (instance semantics)
+2) `occt/src/BRep/BRep_Tool.hxx` — `BRep_Tool::Curve` / `CurveOnSurface` / `Surface` (geometry access)
+3) `occt/src/BRep/BRep_Tool.hxx` — `BRep_Tool::SameParameter` / `SameRange` / `Tolerance` (consistency + tolerances)
+4) `occt/src/BRepMesh/BRepMesh_IncrementalMesh.hxx` — `BRepMesh_IncrementalMesh` (triangulation production)
+
 ## High-level pipeline
 
 - `TopoDS_Shape` is a light handle that references a shared `TopoDS_TShape` plus a per-instance `TopLoc_Location` and `TopAbs_Orientation` to place and orient the underlying topology. Shape identity and equality are driven by `TShape` + location + orientation rules. (`occt/src/TopoDS/TopoDS_Shape.hxx`)

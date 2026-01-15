@@ -4,6 +4,13 @@ Scope: foundational types, math, geometry primitives and curves/surfaces.
 
 Source lane definition: `notes/maps/lanes.md` (entry packages: `Standard`, `NCollection`, `math`, `gp`, `Geom`, `Geom2d`).
 
+## Provenance (required)
+
+- OCCT version + build config: `notes/maps/provenance.md`
+- Map inputs:
+  - `notes/maps/packages.json`
+  - `notes/maps/include_graph.core.dot` / `notes/maps/include_graph.core.md`
+
 ## Package footprint (size proxy)
 
 From `notes/maps/packages.json`:

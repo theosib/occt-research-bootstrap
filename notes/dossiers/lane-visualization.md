@@ -6,6 +6,25 @@ Status: draft
 
 Capture OCCT’s interactive visualization stack at the abstraction boundaries an application typically touches: interactive objects and selection (`AIS_*`), viewer/view lifecycle (`V3d_*`), and rendering backend separation (`Graphic3d_*` vs `OpenGl_*`). The emphasis here is on how shapes become presentations in a viewer, how selection/highlighting is managed, and what the driver abstraction is responsible for.
 
+## Provenance (required)
+
+- OCCT version + build config: `notes/maps/provenance.md`
+- Evidence sources are cited inline in this dossier (file paths under `occt/src/`).
+
+## Scenario + observable outputs (required)
+
+- Scenario: display an `AIS_Shape` in an `AIS_InteractiveContext`, enable subshape selection, and redraw.
+- Observable outputs: display status; active selection modes; highlight style Z-layer usage; driver capability limits.
+- Success criteria: selection/highlight behavior is consistent and controllable via context settings.
+
+## Spine (call chain) (required)
+
+1) `occt/src/OpenGl/OpenGl_GraphicDriver.hxx` — `OpenGl_GraphicDriver` (backend driver)
+2) `occt/src/V3d/V3d_Viewer.hxx` — `V3d_Viewer::CreateView` (viewer/view creation)
+3) `occt/src/V3d/V3d_View.hxx` — `V3d_View::SetWindow` / redraw (window binding + redraw)
+4) `occt/src/AIS/AIS_InteractiveContext.hxx` — `AIS_InteractiveContext::Display` / `Update` (display lifecycle)
+5) `occt/src/AIS/AIS_Shape.hxx` — `AIS_Shape` (shape presentation + selection modes)
+
 ## High-level pipeline
 
 - Backend setup: application creates a `Graphic3d_GraphicDriver` (usually `OpenGl_GraphicDriver`) that owns low-level resources and creates views/structures. (`occt/src/Graphic3d/Graphic3d_GraphicDriver.hxx`, `occt/src/OpenGl/OpenGl_GraphicDriver.hxx`)
